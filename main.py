@@ -94,6 +94,20 @@ class MainHandler(webapp2.RequestHandler):
         content = page_header + username + password + verify + email + page_footer
         self.response.write(content)
 
+class UserName(webapp2.RequestHandler):
+    def get(self):
+        self-response.write("username")
+
+class Verification(webapp2.RequestHandler):
+    def get(self):
+        self-response.write("verification")
+
+class Email(webapp2.RequestHandler):
+    def get(self):
+        self-response.write("email")
+
+
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
 ], debug=True)
