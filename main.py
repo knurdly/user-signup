@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 import webapp2
+import cgi
 
 
 
@@ -36,7 +37,7 @@ page_header = """
 
         <h1> Sign-Up </h1>
 """
-username="""
+user="""
             <form method="post">
                 <table>
                     <tr>
@@ -91,11 +92,20 @@ page_footer = """
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        content = page_header + username + password + verify + email + page_footer
+        content = page_header + user + password + verify + email + page_footer
         self.response.write(content)
 
 class UserName(webapp2.RequestHandler):
-    def get(self):
+    def post(self):
+        user_name = self.request.get("username")
+
+        if user_name == "":
+            error = "Username is blank!".format(user_name)
+            error_escaped = cgi.escape(error, quote=True)
+
+            # redirect to homepage, and include error as a query parameter in the URL
+            self.redirect("/?error=" + error_escaped)
+
         self-response.write("username")
 
 class Verification(webapp2.RequestHandler):
