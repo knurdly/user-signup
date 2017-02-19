@@ -110,9 +110,9 @@ class MainHandler(webapp2.RequestHandler):
 
         #you must pass through all the variables before this will work
         if username_error == password_error == verification_error == "" and email_error == "Thanks for giving us your email. >:)":
-            self.response.write("<h1>Thank you for signing up, " + username+ "!</h1><br><h2> -<em>and thanks for the email</em> >:)")
+            self.response.write("<h1>Thank you for signing up, " + username + "!</h1><br><h2> -<em>and thanks for the email</em> >:)")
         elif username_error == password_error == verification_error == email_error == "":
-            self.response.write("<h1>Thank you for signing up, %(username)s!</h1>")
+            self.response.write("<h1>Thank you for signing up, " + username + "!</h1>")
         else:
             self.response.write(page_header +
                                 form % {"username":username,
